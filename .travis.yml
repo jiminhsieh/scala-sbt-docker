@@ -21,6 +21,8 @@ before_script:
 script:
   - travis_retry docker build -t ${IMAGE_NAME} .
   - ~/official-images/test/run.sh ${IMAGE_NAME}
+  - docker run ${IMAGE_NAME} scala -version
+  - docker run ${IMAGE_NAME} sbt sbtVersion
 
 after_success:
   - docker images
