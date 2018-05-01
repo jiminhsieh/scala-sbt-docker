@@ -1,6 +1,6 @@
 # [Scala & sbt Docker images](https://hub.docker.com/r/jiminhsieh/scala-sbt/)
 
-[![Build Status](https://travis-ci.org/jiminhsieh/scala-sbt-docker-images.svg?branch=master)](https://travis-ci.org/jiminhsieh/scala-sbt-docker)
+[![Build Status](https://travis-ci.org/jiminhsieh/scala-sbt-docker-images.svg?branch=master)](https://travis-ci.org/jiminhsieh/scala-sbt-docker-images)
 [![](https://img.shields.io/docker/pulls/jiminhsieh/scala-sbt.svg)](https://hub.docker.com/r/jiminhsieh/scala-sbt/)
 [![](https://img.shields.io/docker/stars/jiminhsieh/scala-sbt.svg)](https://hub.docker.com/r/jiminhsieh/scala-sbt/)
 
