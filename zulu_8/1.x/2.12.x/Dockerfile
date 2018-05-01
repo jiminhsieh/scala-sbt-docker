@@ -31,11 +31,11 @@ RUN apt update && apt install -y curl && \
         tar -xvf ${SCALA_TGZ}  && \
         rm ${SCALA_TGZ}  && \
         rm /opt/scala-${SCALA_VERSION}/bin/*.bat && \
-        ln -s /opt/scala-${SCALA_VERSION}/bin/* /usr/bin && \
+        ln -s /opt/scala-${SCALA_VERSION}/bin/* /usr/local/bin && \
         curl -L -o ${SBT_TGZ}  https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/${SBT_TGZ} && \
         tar -xvf ${SBT_TGZ} && \
         rm ${SBT_TGZ} && \
         rm /opt/sbt/bin/*.bat && \
-        ln -s /opt/sbt/bin/sbt /usr/bin/sbt && \
+        ln -s /opt/sbt/bin/sbt /usr/local/bin/sbt && \
         apt purge -y curl && apt -y autoremove && \
         sbt sbtVersion
