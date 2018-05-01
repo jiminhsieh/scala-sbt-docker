@@ -19,7 +19,7 @@ FROM azul/zulu-openjdk:8u162
 ENV LANG C.UTF-8
 ENV JAVA_OPTS '-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap'
 # For regression, https://github.com/scala/scala/pull/5588
-ENV JAVA_HOME /usr/lib/jvm/zulu-7-amd64
+ENV JAVA_HOME /usr/lib/jvm/zulu-8-amd64
 
 ENV SCALA_VERSION 2.11.12
 ENV SBT_VERSION 0.13.17
