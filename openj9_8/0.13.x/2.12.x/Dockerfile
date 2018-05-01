@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 FROM adoptopenjdk/openjdk8-openj9:x86_64-ubuntu-jdk8u162-b12_openj9-0.8.0
 
 ENV LANG C.UTF-8
