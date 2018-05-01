@@ -1,0 +1,28 @@
+language: bash
+services: docker
+
+env:
+  - JVM=openj9_8 SBT=1.x SCALA=2.12.x
+  - JVM=openj9_8 SBT=1.x SCALA=2.11.x
+  - JVM=openj9_8 SBT=0.13.x SCALA=2.12.x
+  - JVM=openj9_8 SBT=0.13.x SCALA=2.11.x
+  - JVM=zulu_8 SBT=1.x SCALA=2.12.x
+  - JVM=zulu_8 SBT=1.x SCALA=2.11.x
+  - JVM=zulu_8 SBT=0.13.x SCALA=2.12.x
+  - JVM=zulu_8 SBT=0.13.x SCALA=2.11.x
+  - JVM=zulu_7 SBT=0.13.x SCALA=2.11.x
+
+before_script:
+  - git clone https://github.com/docker-library/official-images.git ~/official-images
+  - env | sort
+  - cd ${JVM}/${SBT}/${SCALA}
+  - IMAGE_NAME="jiminhsieh/scala-sbt:${JVM}-${SBT}-${SCALA}"
+
+script:
+  - travis_retry docker build -t ${IMAGE_NAME} .
+  - ~/official-images/test/run.sh ${IMAGE_NAME}
+
+after_success:
+  - docker images
+  - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
+  - docker push ${IMAGE_NAME}
