@@ -16,8 +16,11 @@
 FROM azul/zulu-openjdk:8u162
 
 ENV LANG C.UTF-8
+ENV JAVA_OPTS '-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap'
+
 ENV SCALA_VERSION 2.12.6
 ENV SBT_VERSION 1.1.4
+
 
 RUN apt update && apt install -y curl && \
         export SCALA_TGZ=scala-${SCALA_VERSION}.tgz && \
