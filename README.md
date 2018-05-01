@@ -17,5 +17,24 @@ The reasons I make another Scala and sbt Docker images:
 
 ## Which JVM do those images use?
 
-* [Azul Zulu](https://www.azul.com/downloads/zulu/)
+* [Azul Zulu](https://www.azul.com/products/zulu-and-zulu-enterprise/)
 * [Eclipse OpenJ9](https://www.eclipse.org/openj9/)
+
+## Available Docker image tags
+* [Azul Zulu](https://www.azul.com/products/zulu-and-zulu-enterprise/)
+    * 7
+        * [zulu_7-0.13.x-2.11.x](zulu_7/0.13.x/2.11.x/Dockerfile)
+    * 8
+        * [zulu_8-1.x-2.12.x](zulu_8/1.x/2.12.x/Dockerfile)
+        * [zulu_8-1.x-2.11.x](zulu_8/1.x/2.11.x/Dockerfile)
+        * [zulu_8-0.13.x-2.12.x](zulu_8/0.13.x/2.12.x/Dockerfile)
+        * [zulu_8-0.13.x-2.11.x](zulu_8/0.13.x/2.11.x/Dockerfile)
+* [AdoptedOpenJDK](https://adoptopenjdk.net/)
+    * OpenJ9 8
+        * [openj9_8-1.x-2.12.x](openj9_8/1.x/2.12.x/Dockerfile)
+        * [openj9_8-1.x-2.11.x](openj9_8/1.x/2.11.x/Dockerfile)
+        * [openj9_8-0.13.x-2.11.x](openj9_8/0.13.x/Dockerfile)
+    
+## The actual base images I used
+* [azul/zulu-openjdk](https://hub.docker.com/r/azul/zulu-openjdk/)
+* [adoptopenjdk/openjdk8-openj9](https://hub.docker.com/r/adoptopenjdk/openjdk8-openj9/)
