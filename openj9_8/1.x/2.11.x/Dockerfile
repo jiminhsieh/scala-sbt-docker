@@ -27,12 +27,12 @@ RUN apt update && \
         export SBT_TGZ=sbt-${SBT_VERSION}.tgz && \
         cd /opt && \
         curl -L -o ${SCALA_TGZ}  https://downloads.lightbend.com/scala/${SCALA_VERSION}/${SCALA_TGZ} && \
-        tar -xvf ${SCALA_TGZ}  && \
+        tar -xf ${SCALA_TGZ}  && \
         rm ${SCALA_TGZ}  && \
         rm /opt/scala-${SCALA_VERSION}/bin/*.bat && \
         ln -s /opt/scala-${SCALA_VERSION}/bin/* /usr/local/bin && \
         curl -L -o ${SBT_TGZ}  https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/${SBT_TGZ} && \
-        tar -xvf ${SBT_TGZ} && \
+        tar -xf ${SBT_TGZ} && \
         rm ${SBT_TGZ} && \
         rm /opt/sbt/bin/*.bat && \
         ln -s /opt/sbt/bin/sbt /usr/local/bin/sbt && \
