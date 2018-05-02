@@ -13,16 +13,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+ARG jvm_major
+ARG jvm_minor
 
-FROM azul/zulu-openjdk:7u171
+FROM azul/zulu-openjdk:${jvm_major}u${jvm_minor}
+
+ARG scala
+ARG sbt
 
 ENV LANG C.UTF-8
-# For regression, https://github.com/scala/scala/pull/5588
-ENV JAVA_HOME /usr/lib/jvm/zulu-7-amd64
+ENV JAVA_OPTS '-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap'
 
-ENV SCALA_VERSION 2.11.12
-ENV SBT_VERSION 0.13.17
-
+ENV SCALA_VERSION ${scala}
+ENV SBT_VERSION ${sbt}
 
 RUN apt update && apt install -y curl && \
         export SCALA_TGZ=scala-${SCALA_VERSION}.tgz && \
@@ -38,4 +41,5 @@ RUN apt update && apt install -y curl && \
         rm ${SBT_TGZ} && \
         rm /opt/sbt/bin/*.bat && \
         ln -s /opt/sbt/bin/sbt /usr/local/bin/sbt && \
+        apt purge -y curl && apt -y autoremove && \
         sbt sbtVersion

@@ -2,29 +2,31 @@ language: bash
 services: docker
 
 env:
-  - JVM=openj9_8 SBT=1.x SCALA=2.12.x
-  - JVM=openj9_8 SBT=1.x SCALA=2.11.x
-  - JVM=openj9_8 SBT=0.13.x SCALA=2.12.x
-  - JVM=openj9_8 SBT=0.13.x SCALA=2.11.x
-  - JVM=zulu_8 SBT=1.x SCALA=2.12.x
-  - JVM=zulu_8 SBT=1.x SCALA=2.11.x
-  - JVM=zulu_8 SBT=0.13.x SCALA=2.12.x
-  - JVM=zulu_8 SBT=0.13.x SCALA=2.11.x
-  - JVM=zulu_7 SBT=0.13.x SCALA=2.11.x
+  - JVM=openj9  JVM_MAJOR=8 JVM_MINOR=162 SBT_TAG=1.x    SBT_VERSION=1.1.4   SCALA_TAG=2.12.x  SCALA_VERSION=2.12.6
+  - JVM=openj9  JVM_MAJOR=8 JVM_MINOR=162 SBT_TAG=1.x    SBT_VERSION=1.1.4   SCALA_TAG=2.11.x  SCALA_VERSION=2.11.12
+  - JVM=openj9  JVM_MAJOR=8 JVM_MINOR=162 SBT_TAG=0.13.x SBT_VERSION=0.13.17 SCALA_TAG=2.12.x  SCALA_VERSION=2.12.6
+  - JVM=openj9  JVM_MAJOR=8 JVM_MINOR=162 SBT_TAG=0.13.x SBT_VERSION=0.13.17 SCALA_TAG=2.11.x  SCALA_VERSION=2.11.12
+  - JVM=zulu    JVM_MAJOR=8 JVM_MINOR=162 SBT_TAG=1.x    SBT_VERSION=1.1.4   SCALA_TAG=2.12.x  SCALA_VERSION=2.12.6
+  - JVM=zulu    JVM_MAJOR=8 JVM_MINOR=162 SBT_TAG=1.x    SBT_VERSION=1.1.4   SCALA_TAG=2.11.x  SCALA_VERSION=2.11.12
+  - JVM=zulu    JVM_MAJOR=8 JVM_MINOR=162 SBT_TAG=0.13.x SBT_VERSION=0.13.17 SCALA_TAG=2.12.x  SCALA_VERSION=2.12.6
+  - JVM=zulu    JVM_MAJOR=8 JVM_MINOR=162 SBT_TAG=0.13.x SBT_VERSION=0.13.17 SCALA_TAG=2.11.x  SCALA_VERSION=2.11.12
+  - JVM=zulu    JVM_MAJOR=7 JVM_MINOR=171 SBT_TAG=0.13.x SBT_VERSION=0.13.17 SCALA_TAG=2.11.x  SCALA_VERSION=2.11.12
 
 before_script:
   - git clone https://github.com/docker-library/official-images.git ~/official-images
   - env | sort
-  - cd ${JVM}/${SBT}/${SCALA}
-  - IMAGE_NAME="jiminhsieh/scala-sbt:${JVM}-${SBT}-${SCALA}"
+  - cd ${JVM}_${JVM_MAJOR}
+  - IMAGE_NAME="jiminhsieh/scala-sbt:${JVM}_${JVM_MAJOR}-${SBT_TAG}-${SCALA_TAG}"
+  - IMAGE_FULL_NAME="jiminhsieh/scala-sbt:${JVM}_${JVM_MAJOR}u${JVM_MINOR}-${SBT_VERSION}-${SCALA_VERSION}"
 
 script:
-  - travis_retry docker build -t ${IMAGE_NAME} .
+  - travis_retry docker build -t ${IMAGE_NAME} --build-arg jvm_major=${JVM_MAJOR} --build-arg jvm_minor=${JVM_MINOR} --build-arg sbt=${SBT_VERSION} --build-arg scala=${SCALA_VERSION} .
   - ~/official-images/test/run.sh ${IMAGE_NAME}
-  - docker run ${IMAGE_NAME} scala -version
-  - docker run ${IMAGE_NAME} sbt sbtVersion
+  - docker run ${IMAGE_NAME} java -version && docker run ${IMAGE_NAME} scala -version && docker run ${IMAGE_NAME} sbt sbtVersion
 
 after_success:
+  - docker tag ${IMAGE_NAME} ${IMAGE_FULL_NAME}
   - docker images
   - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
   - docker push ${IMAGE_NAME}
+  - docker push ${IMAGE_FULL_NAME}

@@ -7,8 +7,7 @@
 
 ## Why another Docker images for Scala and sbt?
 
-I know there is a popular Docker image for Scala and sbt already exist.
-[It](https://hub.docker.com/r/hseeberger/scala-sbt/) was made by [Heiko Seeberger](https://github.com/hseeberger).
+I know there is a popular Docker image for Scala and sbt already exists. [It](https://hub.docker.com/r/hseeberger/scala-sbt/) is made by [Heiko Seeberger](https://github.com/hseeberger).
 
 The reasons I make another Scala and sbt Docker images:
 
@@ -20,21 +19,13 @@ The reasons I make another Scala and sbt Docker images:
 * [Azul Zulu](https://www.azul.com/products/zulu-and-zulu-enterprise/)
 * [Eclipse OpenJ9](https://www.eclipse.org/openj9/)
 
-## Available Docker image tags
+## [Available Docker image tags](https://hub.docker.com/r/jiminhsieh/scala-sbt/tags/)
 * [Azul Zulu](https://www.azul.com/products/zulu-and-zulu-enterprise/)
-    * 7
-        * [zulu_7-0.13.x-2.11.x](zulu_7/0.13.x/2.11.x/Dockerfile)
-    * 8
-        * [zulu_8-1.x-2.12.x](zulu_8/1.x/2.12.x/Dockerfile)
-        * [zulu_8-1.x-2.11.x](zulu_8/1.x/2.11.x/Dockerfile)
-        * [zulu_8-0.13.x-2.12.x](zulu_8/0.13.x/2.12.x/Dockerfile)
-        * [zulu_8-0.13.x-2.11.x](zulu_8/0.13.x/2.11.x/Dockerfile)
+    * Java 7
+    * Java 8
 * [AdoptedOpenJDK](https://adoptopenjdk.net/)
-    * OpenJ9 8
-        * [openj9_8-1.x-2.12.x](openj9_8/1.x/2.12.x/Dockerfile)
-        * [openj9_8-1.x-2.11.x](openj9_8/1.x/2.11.x/Dockerfile)
-        * [openj9_8-0.13.x-2.11.x](openj9_8/0.13.x/Dockerfile)
+    * OpenJ9 Java 8
     
-## The actual base images I used
+## The base images I used
 * [azul/zulu-openjdk](https://hub.docker.com/r/azul/zulu-openjdk/)
 * [adoptopenjdk/openjdk8-openj9](https://hub.docker.com/r/adoptopenjdk/openjdk8-openj9/)

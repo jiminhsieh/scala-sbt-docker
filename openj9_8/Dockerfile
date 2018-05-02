@@ -13,12 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+ARG jvm_major
+ARG jvm_minor
 
-FROM adoptopenjdk/openjdk8-openj9:x86_64-ubuntu-jdk8u162-b12_openj9-0.8.0
+FROM adoptopenjdk/openjdk8-openj9:x86_64-ubuntu-jdk${jvm_major}u${jvm_minor}-b12_openj9-0.8.0
+
+ARG scala
+ARG sbt
 
 ENV LANG C.UTF-8
-ENV SCALA_VERSION 2.12.6
-ENV SBT_VERSION 0.13.17
+ENV SCALA_VERSION ${scala}
+ENV SBT_VERSION ${sbt}
 
 RUN apt update && \
         export SCALA_TGZ=scala-${SCALA_VERSION}.tgz && \
