@@ -22,7 +22,6 @@ ARG scala
 ARG sbt
 
 ENV LANG C.UTF-8
-ENV JAVA_OPTS '-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap'
 
 ENV SCALA_VERSION ${scala}
 ENV SBT_VERSION ${sbt}
