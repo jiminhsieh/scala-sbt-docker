@@ -7,8 +7,6 @@
 
 ## Why another Docker images for Scala and sbt?
 
-I know there is a popular Docker image for Scala and sbt already exists. [It](https://hub.docker.com/r/hseeberger/scala-sbt/) is made by [Heiko Seeberger](https://github.com/hseeberger).
-
 The reasons I make another Scala and sbt Docker images:
 
 * It will be great to use JVM that passed [TCK/JCK](https://en.wikipedia.org/wiki/Technology_Compatibility_Kit).
